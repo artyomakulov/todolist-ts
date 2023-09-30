@@ -6,7 +6,7 @@ type TaskType = {
 
 type PropTypes = {
   title: string
-  tasks: Array<TaskType>
+  tasks: TaskType[]
 }
 
 export function Todolist(props: PropTypes) {
@@ -19,16 +19,16 @@ export function Todolist(props: PropTypes) {
       </div>
       <ul>
         <li>
-          <input type="checkbox" checked={true} />
-          <span>CSS</span>
+          <input type="checkbox" checked={props.tasks[0].isDone} />
+          <span>{props.tasks[0].title}</span>
         </li>
         <li>
-          <input type="checkbox" checked={true} />
-          <span>JS</span>
+          <input type="checkbox" checked={props.tasks[1].isDone} />
+          <span>{props.tasks[1].title}</span>
         </li>
         <li>
-          <input type="checkbox" checked={false} />
-          <span>REACT</span>
+          <input type="checkbox" checked={props.tasks[2].isDone} />
+          <span>{props.tasks[2].title}</span>
         </li>
       </ul>
       <div>
