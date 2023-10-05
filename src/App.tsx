@@ -11,25 +11,24 @@ function App() {
     { id: v1(), title: 'JS', isDone: true },
     { id: v1(), title: 'React', isDone: false },
   ])
-  console.log('tasks', tasks)
-
   let [filter, setFilter] = useState<FilterValueType>('all')
 
-  // let tasks2 = [
-  //   { id: 1, title: 'Terminator', isDone: true },
-  //   { id: 2, title: 'LOTR', isDone: true },
-  //   { id: 3, title: 'Hobbit', isDone: false },
-  // ]
-  function addTask (title:string) {
-    let newTask = {id: v1(), title: title, isDone: false}
-    let newTasks = [newTask, ...tasks]
-    setTasks(newTasks)
+  function addTask(title: string) {
+    let newTask = { id: v1(), title: title, isDone: false }
+    setTasks([newTask, ...tasks])
   }
-
 
   function removeTask(id: string) {
     let filteredTasks = tasks.filter((task) => task.id !== id)
     setTasks(filteredTasks)
+  }
+
+  function changeStatus(taskId: string, isDone: boolean) {
+    let task = tasks.find((task) => task.id === taskId)
+    if (task) {
+      task.isDone = isDone
+    }
+    setTasks([...tasks])
   }
 
   function changeFilter(value: FilterValueType) {
@@ -52,8 +51,9 @@ function App() {
         removeTask={removeTask}
         changeFilter={changeFilter}
         addTask={addTask}
+        changeStatus={changeStatus}
+        filter={filter}
       />
-      {/* <Todolist title="Movies" tasks={tasks2} /> */}
     </div>
   )
 }
