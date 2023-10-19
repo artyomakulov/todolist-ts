@@ -2,6 +2,9 @@ import { ChangeEvent } from 'react'
 import { FilterValueType } from '../App'
 import { AddItemForm } from './AddItemForm'
 import { EditableSpan } from './EditableSpan'
+import IconButton from '@mui/material/IconButton'
+import { Delete } from '@mui/icons-material'
+import { Button } from '@mui/material'
 
 export type TaskType = {
   id: string
@@ -45,7 +48,9 @@ export function Todolist(props: PropTypes) {
     <div>
       <h3>
         <EditableSpan title={props.title} onChange={changeTodolistTitel} />
-        <button onClick={removeTodolist}>x</button>
+        <IconButton onClick={removeTodolist}>
+          <Delete />
+        </IconButton>
       </h3>
       <AddItemForm addItem={addTask} />
       <ul>
@@ -71,30 +76,35 @@ export function Todolist(props: PropTypes) {
                 title={task.title}
                 onChange={onChangeTitleHandler}
               />
-              <button onClick={onRemoveHandler}>Delete</button>
+              <IconButton onClick={onRemoveHandler} aria-label="delete">
+                <Delete />
+              </IconButton>
             </li>
           )
         })}
       </ul>
       <div>
-        <button
-          className={props.filter === 'all' ? 'active-filter' : ''}
+        <Button
+          color="info"
+          variant={props.filter === 'all' ? 'contained' : 'text'}
           onClick={onAllClickHandler}
         >
           All
-        </button>
-        <button
-          className={props.filter === 'active' ? 'active-filter' : ''}
+        </Button>
+        <Button
+          color="primary"
+          variant={props.filter === 'active' ? 'contained' : 'text'}
           onClick={onActiveClickHandler}
         >
           Active
-        </button>
-        <button
-          className={props.filter === 'completed' ? 'active-filter' : ''}
+        </Button>
+        <Button
+          color="secondary"
+          variant={props.filter === 'completed' ? 'contained' : 'text'}
           onClick={onCompletedClickHandler}
         >
           Completed
-        </button>
+        </Button>
       </div>
     </div>
   )
