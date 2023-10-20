@@ -1,5 +1,6 @@
-import { Button, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
+import PlusOneIcon from '@mui/icons-material/PlusOne'
 
 type AddItemFormPropsType = {
   addItem: (title: string) => void
@@ -40,9 +41,11 @@ export function AddItemForm(props: AddItemFormPropsType) {
         error={!!error}
         helperText={error}
       />
-      <Button onClick={addTask} variant="contained" size="small">
-        Add
-      </Button>
+      <button>
+        <PlusOneIcon onClick={addTask} color="secondary">
+          Add
+        </PlusOneIcon>
+      </button>
     </div>
   )
 }
