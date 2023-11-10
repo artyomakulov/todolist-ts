@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 
 export type FilterValueType = 'all' | 'completed' | 'active'
 
-type TodoListType = {
+export type TodoListType = {
   id: string
   title: string
   filter: FilterValueType
@@ -27,6 +27,21 @@ type TasksStateType = {
 }
 
 function App() {
+  
+  let todoListId1 = v1()
+  let todoListId2 = v1()
+
+  let [todolists, setTodolists] = useState<Array<TodoListType>>([
+    { id: todoListId1, title: 'What to learn', filter: 'all' },
+    { id: todoListId2, title: 'What to buy', filter: 'all' },
+  ])
+
+  function removeTodolist(todoListId: string) {
+    let filteredTodolist = todolists.filter((tl) => tl.id !== todoListId)
+    setTodolists(filteredTodolist)
+    delete tasksObj[todoListId]
+    setTasksObj({ ...tasksObj })
+  }
   function addTask(title: string, todoListId: string) {
     let newTask = { id: v1(), title: title, isDone: false }
     let tasks = tasksObj[todoListId]
@@ -72,20 +87,6 @@ function App() {
     }
   }
 
-  let todoListId1 = v1()
-  let todoListId2 = v1()
-
-  let [todolists, setTodolists] = useState<Array<TodoListType>>([
-    { id: todoListId1, title: 'What to learn', filter: 'all' },
-    { id: todoListId2, title: 'What to buy', filter: 'all' },
-  ])
-
-  function removeTodolist(todoListId: string) {
-    let filteredTodolist = todolists.filter((tl) => tl.id !== todoListId)
-    setTodolists(filteredTodolist)
-    delete tasksObj[todoListId]
-    setTasksObj({ ...tasksObj })
-  }
 
   function changeTodolistTitle(id: string, newTitle: string) {
     const todoList = todolists.find((tl) => tl.id === id)
@@ -135,7 +136,7 @@ function App() {
         </Toolbar>
       </AppBar>
       <Container fixed>
-        <Grid container style={{padding: '20px'}}>
+        <Grid container style={{ padding: '20px' }}>
           <AddItemForm addItem={addTodoList} />
         </Grid>
         <Grid container spacing={4}>
@@ -153,7 +154,7 @@ function App() {
             }
             return (
               <Grid item>
-                <Paper style={{padding: "10px"}}>
+                <Paper style={{ padding: '10px' }}>
                   <Todolist
                     key={tl.id}
                     id={tl.id}
