@@ -22,12 +22,11 @@ export type TodoListType = {
   filter: FilterValueType
 }
 
-type TasksStateType = {
+export type TasksStateType = {
   [key: string]: Array<TaskType>
 }
 
 function App() {
-  
   let todoListId1 = v1()
   let todoListId2 = v1()
 
@@ -86,7 +85,6 @@ function App() {
       setTodolists([...todolists])
     }
   }
-
 
   function changeTodolistTitle(id: string, newTitle: string) {
     const todoList = todolists.find((tl) => tl.id === id)
