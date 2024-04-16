@@ -5,10 +5,10 @@ import {
   RemoveTodolistActionType,
 } from './todolistsReducer'
 
-export type RemoveTaskAction1Type = {
+export type RemoveTaskActionType = {
   type: 'REMOVE-TASK'
-  todolistId: string
   taskId: string
+  todolistId: string
 }
 
 export type AddTaskActionType = {
@@ -32,7 +32,7 @@ export type ChangeTaskTitleActionType = {
 }
 
 type ActionsType =
-  | RemoveTaskAction1Type
+  | RemoveTaskActionType
   | AddTaskActionType
   | ChangeTaskStatusActionType
   | ChangeTaskTitleActionType
@@ -95,8 +95,8 @@ export const tasksReducer = (
 export const removeTaskActionCreator = (
   taskId: string,
   todolistId: string
-): RemoveTaskAction1Type => {
-  return { type: 'REMOVE-TASK', todolistId: todolistId, taskId: taskId }
+): RemoveTaskActionType => {
+  return { type: 'REMOVE-TASK', taskId: taskId, todolistId: todolistId }
 }
 
 export const addTaskActionCreator = (
@@ -111,7 +111,7 @@ export const changeTaskStatusActionCreator = (
   isDone: boolean,
   todolistId: string
 ): ChangeTaskStatusActionType => {
-  return { type: 'CHANGE-TASK-STATUS', taskId, isDone, todolistId: todolistId }
+  return { type: 'CHANGE-TASK-STATUS', isDone, todolistId: todolistId, taskId }
 }
 
 export const changeTaskTitleActionCreator = (
@@ -121,5 +121,3 @@ export const changeTaskTitleActionCreator = (
 ): ChangeTaskTitleActionType => {
   return { type: 'CHANGE-TASK-TITLE', taskId, title, todolistId: todolistId }
 }
-
-export const removeTodolistActionCreator = {}

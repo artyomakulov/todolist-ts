@@ -6,7 +6,10 @@ import {
   removeTaskActionCreator,
   tasksReducer,
 } from './tasksReducer'
-import { addTodolistActionCreator, removeTodolistActionCreator } from './todolistsReducer'
+import {
+  addTodolistActionCreator,
+  removeTodolistActionCreator,
+} from './todolistsReducer'
 
 test('correct task should be deleted from correct array', () => {
   const startState: TasksStateType = {
@@ -129,7 +132,7 @@ test('new array should be added when new todolist is created', () => {
   expect(endState[newKey]).toEqual([])
 })
 
-test('propetry with todolistId should be deleted', () => {
+test('property with todolistId should be deleted', () => {
   const startState: TasksStateType = {
     todoListId1: [
       { id: '1', title: 'CSS', isDone: false },
