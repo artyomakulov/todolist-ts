@@ -82,8 +82,8 @@ export const changeTodolistTitleActionCreator = (
 }
 
 export const changeTodolistFilterActionCreator = (
-  id: string,
-  filter: FilterValueType
+  filter: FilterValueType,
+  todolistId: string
 ): ChangeTodolistFilterActionType => {
-  return { type: 'CHANGE-TODOLIST-FILTER', id: id, filter: filter }
+  return { type: 'CHANGE-TODOLIST-FILTER', filter: filter, id: todolistId }
 }
