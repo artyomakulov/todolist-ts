@@ -3,6 +3,8 @@ import { v1 } from 'uuid'
 import {
   AddTodolistActionType,
   RemoveTodolistActionType,
+  todoListId1,
+  todoListId2,
 } from './todolistsReducer'
 
 export type RemoveTaskActionType = {
@@ -39,8 +41,20 @@ type ActionsType =
   | AddTodolistActionType
   | RemoveTodolistActionType
 
+const initialState: TasksStateType = {
+  [todoListId1]: [
+    { id: v1(), title: 'CSS', isDone: true },
+    { id: v1(), title: 'JS', isDone: true },
+    { id: v1(), title: 'React', isDone: false },
+  ],
+  [todoListId2]: [
+    { id: v1(), title: 'Book', isDone: true },
+    { id: v1(), title: 'Milk', isDone: true },
+  ],
+}
+
 export const tasksReducer = (
-  state: TasksStateType,
+  state: TasksStateType = initialState,
   action: ActionsType
 ): TasksStateType => {
   switch (action.type) {
@@ -88,7 +102,7 @@ export const tasksReducer = (
       return stateCopy
     }
     default:
-      throw new Error('i dont know understand this action type')
+      return state
   }
 }
 

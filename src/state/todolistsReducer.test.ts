@@ -36,7 +36,7 @@ test('correct todolist should be added', () => {
   let todoListId1 = v1()
   let todoListId2 = v1()
 
-  let newTodolistTitle = 'New todolistw'
+  let newTodolistTitle = 'New todolist'
 
   const startState: Array<TodoListType> = [
     { id: todoListId1, title: 'What to learn', filter: 'all' },
@@ -54,7 +54,7 @@ test('correct todolist should be added', () => {
   )
 
   expect(endState.length).toBe(3)
-  expect(endState[2].title).toBe(newTodolistTitle)
+  expect(endState[0].title).toBe(newTodolistTitle)
   expect(endState[2].filter).toBe('all')
 })
 
