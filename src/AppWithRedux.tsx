@@ -26,6 +26,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { AppRootState } from './state/store'
+import React, { useCallback } from 'react'
 
 export type FilterValueType = 'all' | 'completed' | 'active'
 
@@ -40,6 +41,7 @@ export type TasksStateType = {
 }
 
 function AppWithRedux() {
+  console.log('App is called')
   const dispatch = useDispatch()
   const todolists = useSelector<AppRootState, Array<TodoListType>>(
     (state) => state.todolists
@@ -88,10 +90,10 @@ function AppWithRedux() {
     dispatch(action)
   }
 
-  function addTodoList(title: string) {
+  const addTodoList = useCallback((title: string) => {
     const action = addTodolistActionCreator(title)
     dispatch(action)
-  }
+  }, [])
 
   return (
     <div className="App">
